@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --panel-border: 3px solid #000;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto; /* Lenis handles smooth scroll; native disabled to avoid double-scroll */
+}
+
+body {
+  background-color: #050505;
+  color: #ffffff;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+@media (pointer: coarse), (hover: none) {
+  body {
+    cursor: auto;
+  }
+}
+
+/* ---------- Reduced motion: kill non-essential motion entirely ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------- Visible keyboard focus ---------- */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid #f4ff3d;
+  outline-offset: 3px;
+}
+
+/* ---------- Comic ink outline text ---------- */
+.ink-outline {
+  -webkit-text-stroke: 2px #000;
+  paint-order: stroke fill;
+}
+
+.ink-outline-white {
+  -webkit-text-stroke: 2px #fff;
+  paint-order: stroke fill;
+}
+
+/* ---------- Halftone dot texture overlay ---------- */
+.halftone-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.5) 1px, transparent 1.4px);
+  background-size: 7px 7px;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+/* ---------- Grain / noise ---------- */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  pointer-events: none;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- Torn paper edge (bottom) via clip-path ---------- */
+.torn-bottom {
+  clip-path: polygon(
+    0% 0%, 100% 0%, 100% 94%, 97% 100%, 92% 93%, 87% 100%, 82% 92%, 77% 100%,
+    72% 94%, 67% 100%, 62% 93%, 57% 100%, 52% 94%, 47% 100%, 42% 93%, 37% 100%,
+    32% 94%, 27% 100%, 22% 93%, 17% 100%, 12% 94%, 7% 100%, 2% 93%, 0% 100%
+  );
+}
+
+/* ---------- Speed lines background ---------- */
+.speed-lines {
+  background: repeating-linear-gradient(
+    115deg,
+    rgba(255, 255, 255, 0.035) 0px,
+    rgba(255, 255, 255, 0.035) 2px,
+    transparent 2px,
+    transparent 26px
+  );
+}
+
+/* ---------- Custom scrollbar ---------- */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #000;
+}
+::-webkit-scrollbar-thumb {
+  background: #e30613;
+  border: 2px solid #000;
+}
+
+/* ---------- Comic panel frame ---------- */
+.panel-frame {
+  border: 3px solid #000;
+  box-shadow: 6px 6px 0px 0px #000;
+}
+
+.panel-frame-white {
+  border: 3px solid #fff;
+  box-shadow: 6px 6px 0px 0px #fff;
+}
